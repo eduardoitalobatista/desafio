@@ -1,0 +1,20 @@
+spring:
+  application: 
+    name: restaurantes-api
+  h2:
+    console:
+     settings:
+      trace: true 
+  datasource:
+    url: jdbc:mysql://192.168.0.3:3306/restaurantes?useSSL=false
+    username: root
+    password: admin
+  jpa:    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+server: 
+  port: 6065
+eureka: 
+  client: 
+    service-url: 
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}            
