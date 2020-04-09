@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:5.6
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - /home/server/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=restaurantes
+  app:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    links:
+      - db
+    ports:
+      - 80:80
+    environment:
+      - PMA_ARBITRARY=1
+    depends_on:
+      - db
