@@ -1,0 +1,21 @@
+spring:
+  application:    name: apy-gateway
+    
+server:  port: 8080
+  
+eureka:  client:    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+      
+zuul:  ignored-services: '*'
+  prefix: /api
+  routes:    busca-restaurantes-service:
+      path: /busca-restaurantes/**
+      service-id: busca-restaurantes-service
+    busca-tipos-service:
+      path: /busca-tipos-comida/**
+      service-id: busca-tipos-comida-service
+    restaurantes-api:
+      path: /restaurantes-api/**
+      service-id: restaurantes-api
+  host:    socket-timeout-millis: 30000   
+  
